@@ -1,10 +1,15 @@
 <h2>List of ratings</h2>
 
+<% if session[:last_rating].nil? %>
+  <p>no ratings given</p>
+<% else %>
+  <p>previous rating: <%= session[:last_rating] %></p>
+<% end %>
+
 <ul>
  <% @ratings.each do |rating| %>
    <li> <%= rating %> <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %></li>
  <% end %>
 </ul>
-
 
 <%= link_to 'New Rating', 'ratings/new' %>
