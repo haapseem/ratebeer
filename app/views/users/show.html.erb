@@ -18,5 +18,15 @@
 <% end %>
 </ul>
 
+<h3>
+  Clubs:
+</h3>
+
+<ul>
+<% @user.beer_clubs.each do |r| %>
+  <li> <%= r %> <%= link_to 'delete', r, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+</ul>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

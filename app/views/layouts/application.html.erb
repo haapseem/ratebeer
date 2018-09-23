@@ -18,12 +18,14 @@
       <%= link_to 'breweries', breweries_path %>
       <%= link_to 'beers', beers_path %>
       <%= link_to 'ratings', ratings_path %>
-      <%= link_to 'users', users_path %> |
+      <%= link_to 'users', users_path %>
+      <%= link_to 'clubs', '/beer_clubs' %> |
 
       <!-- user or signin -->
       <% if current_user %>
         <%= link_to current_user.username, current_user %>
         <%= link_to 'rate a beer', '/ratings/new' %>
+        <%= link_to 'join a club', '/memberships/new' %>
       <% end %>
       <% if not current_user %>
         <%= link_to 'signin', '/signin' %>
