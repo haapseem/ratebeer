@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h2>
-  <strong>Name:</strong>
   <%= @brewery.name %>
 </h2>
+<em>
+  Established in <%= @brewery.year %>
+</em>
 
-<p>
+<!-- <p>
   <strong>Year:</strong>
   <%= @brewery.year %>
-</p>
+</p> -->
 
 <p>
-  <strong>Beers:</strong>
+  <strong>Number of beers:</strong>
   <%= @brewery.beers.count %>
 </p>
 
