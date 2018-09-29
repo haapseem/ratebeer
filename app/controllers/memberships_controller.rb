@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
-    @beer_clubs = BeerClub.all
+    @beer_clubs = BeerClub.all - current_user.beer_clubs
   end
 
   # GET /memberships/1/edit
@@ -63,13 +63,14 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_params
+    params.require(:membership).permit(:beer_club_id, :user_id)
+  end
 end
