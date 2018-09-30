@@ -6,13 +6,15 @@
   </h3>
 </p>
 
-<p>
-  <% if @user.ratings.empty? %>
-    user has not rated any beers!
-  <% else %>
-    Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>
-  <% end %>
-</p>
+<% if @user.ratings.empty? %>
+  <p>  user has not rated any beers! </p>
+<% else %>
+  <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %></p>
+  <p>Favorite beer: <%= @user.favorite_beer.name %></p>
+  <p>Favorite brewery: <%= @user.favorite_brewery.name %></p>
+  <p>Preferred style: <%= @user.favorite_style %></p>
+<% end %>
+
 
 
 <p>
