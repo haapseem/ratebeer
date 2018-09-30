@@ -1,5 +1,11 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
+  before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
+
+  def set_breweries_and_styles_for_template
+    @breweries = Brewery.all
+    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+  end
 
   # GET /beers
   # GET /beers.json
@@ -15,29 +21,29 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
-    @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+    set_breweries_and_styles_for_template
   end
 
   # GET /beers/1/edit
   def edit
+    set_breweries_and_styles_for_template
   end
 
   # POST /beers
   # POST /beers.json
   def create
-    Beer.create params.require(:beer).permit(:name, :style, :brewery_id)
+    @beer = Beer.new(beer_params)
 
-    redirect_to beers_path
-    # respond_to do |format|
-    #   if @beer.save
-    #     format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
-    #     format.json { render :show, status: :created, location: @beer }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @beer.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @beer.save
+        format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
+        format.json { render :show, status: :created, location: @beer }
+      else
+        set_breweries_and_styles_for_template
+        format.html { render :new }
+        format.json { render json: @beer.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /beers/1

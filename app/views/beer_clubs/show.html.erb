@@ -15,11 +15,12 @@
   <%= @beer_club.city %>
 </p>
 
+<h3>Members</h3>
 
 <ul>
-<% @beer_club.users.each do |r| %>
-  <li> <%= r %> <%= link_to 'delete', r, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-<% end %>
+  <% @beer_club.members.each do |member| %>
+    <li><%= link_to member.username, member %></li>
+  <% end %>
 </ul>
 
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |

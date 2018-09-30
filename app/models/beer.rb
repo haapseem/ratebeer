@@ -9,6 +9,8 @@ class Beer < ApplicationRecord
   has_many :raters, -> { distinct }, through: :ratings, source: :user
 
   validates :name, presence: true
+  validates :style, presence: true
+  validates :brewery, presence: true
 
   def to_s
     name + ', ' + brewery.name
