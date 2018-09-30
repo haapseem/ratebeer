@@ -22,8 +22,8 @@ class User < ApplicationRecord
     ratings.order(:score).last.beer
   end
 
-  def average_of(r)
-    r.sum(&:score).fdiv(r.size)
+  def average_of(ratings)
+    ratings.sum(&:score).fdiv(ratings.size)
   end
 
   def favorite_style
