@@ -10,6 +10,7 @@ describe "Beer page" do
 
   describe "Create beer" do
     it "Can be added if name is valid" do
+      sign_in(username: "Pekka", password: "Foobar1")
       visit new_beer_path
       fill_in('beer_name', with: 'test')
 
@@ -19,6 +20,7 @@ describe "Beer page" do
     end
 
     it "Cannot be added if name is not valid" do
+      sign_in(username: "Pekka", password: "Foobar1")
       visit new_beer_path
       fill_in('beer_name', with: '')
 
