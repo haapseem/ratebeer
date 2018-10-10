@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
+
+gem 'httparty'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
@@ -33,6 +35,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'webmock'
 end
 
 #secure crypt
