@@ -1,21 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h3>
-    <%= @user.username %>
-  </h3>
-</p>
+<h2>
+  <%= @user.username %>
+</h2>
 
 <% if @user.ratings.empty? %>
-  <p>  user has not rated any beers! </p>
+  <p>has not rate any beer</p>
 <% else %>
-  <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %></p>
+  <p>
+    Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>
+  </p>
   <p>Favorite beer: <%= @user.favorite_beer.name %></p>
   <p>Favorite brewery: <%= @user.favorite_brewery.name %></p>
-  <p>Preferred style: <%= @user.favorite_style %></p>
+  <p>Preferred style: <%= @user.favorite_style.name %></p>
 <% end %>
-
-
 
 <p>
   <% if @user.beer_clubs.any? %>
@@ -24,8 +22,7 @@
       <li> <%= link_to club.name, club %> </li>
     <% end %>
   <% end %>
-</p>
-
+</pp>
 
 <h3>ratings</h3>
 
@@ -43,4 +40,4 @@
   <%= link_to 'Edit', edit_user_path(@user) %>
   <br>
   <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+ <% end %>

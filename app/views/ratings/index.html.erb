@@ -1,18 +1,9 @@
 <h2>List of ratings</h2>
 
+<p>Total number of ratings:  <%= @ratings.count %></p>
 
 <ul>
  <% @ratings.each do |rating| %>
    <li> <%= rating %> <%= link_to rating.user.username, rating.user %></li>
  <% end %>
 </ul>
-
-<p> Number of ratings: <%= @ratings.count %> </p>
-
-<% if session[:last_rating].nil? %>
-  <p>no ratings given</p>
-<% else %>
-  <p>previous rating: <%= session[:last_rating] %></p>
-<% end %>
-
-<%= link_to 'New Rating', 'ratings/new' %>

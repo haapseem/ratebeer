@@ -4,30 +4,28 @@ include Helpers
 
 describe "Beer page" do
   before :each do
-    FactoryBot.create :user
-    FactoryBot.create :brewery
+    FactoryBot.create(:brewery)
+    FactoryBot.create(:user)
+    FactoryBot.create(:style)
+    sign_in(username: "Pekka", password: "Foobar1")
   end
 
-  describe "Create beer" do
-    it "Can be added if name is valid" do
-      sign_in(username: "Pekka", password: "Foobar1")
+  it "a beer can be saved with valid input" do
       visit new_beer_path
-      fill_in('beer_name', with: 'test')
+      fill_in('beer[name]', with:'Keppana')
 
       expect{
         click_button('Create Beer')
       }.to change{Beer.count}.by(1)
-    end
+  end
 
-    it "Cannot be added if name is not valid" do
-      sign_in(username: "Pekka", password: "Foobar1")
+  it "if name invalid, beer is not saved and a errormessage is given" do
       visit new_beer_path
-      fill_in('beer_name', with: '')
 
       expect{
         click_button('Create Beer')
       }.to change{Beer.count}.by(0)
+
       expect(page).to have_content "Name can't be blank"
-    end
   end
 end

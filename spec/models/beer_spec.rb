@@ -1,21 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Beer, type: :model do
-  describe "If beer is valid it's saved" do
-    let(:brewery){ Brewery.create name: 'brewery', year: 1999 }
-    let(:beer){ Beer.create name: 'beer', style: 'beer', brewery: brewery }
-    let(:beer1){ Beer.create name: '', style: 'beer', brewery: brewery }
-    let(:beer2){ Beer.create name: 'beer', style: '', brewery: brewery }
+  let(:brewery) { Brewery.create name: 'crapbrau', year: 1900 }
+  let(:lager) { Style.create name: 'lager' }
 
-    it "Beer is valid and saved" do
-      expect(beer).to be_valid
-      expect(Beer.count).to eq(1)
-    end
+  it "is created with valid input" do
+    beer = Beer.create name: 'crap', style: lager, brewery: brewery
+    expect(beer).to be_valid
+    expect(Beer.count).to eq(1)
+  end
 
-    it "Beer is not valid and not saved" do
-      expect(beer1).not_to be_valid
-      expect(beer2).not_to be_valid
-      expect(Beer.count).to eq(0)
-    end
+  it "is not saved without name" do
+    beer = Beer.create style: lager, brewery: brewery
+
+    expect(beer).not_to be_valid
+    expect(Beer.count).to eq(0)
+  end
+
+  it "is not saved without style" do
+    beer = Beer.create name: 'crap', brewery: brewery
+
+    expect(beer).not_to be_valid
+    expect(Beer.count).to eq(0)
   end
 end

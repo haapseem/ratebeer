@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 include Helpers
-include ActionView::Helpers::TextHelper
 
-describe "Users page" do
-  let!(:user) { FactoryBot.create :user }
-  # let!(:rating) {FactoryBot.create :rating, user: user }
-
+describe "User" do
   before :each do
+    FactoryBot.create :user
   end
 
   describe "who has signed up" do
@@ -26,45 +23,14 @@ describe "Users page" do
     end
   end
 
-    it "when signed up with good credentials, is added to the system" do
-      visit signup_path
-      fill_in('user_username', with: 'Brian')
-      fill_in('user_password', with: 'Secret55')
-      fill_in('user_password_confirmation', with: 'Secret55')
+  it "when signed up with good credentials, is added to the system" do
+    visit signup_path
+    fill_in('user_username', with:'Brian')
+    fill_in('user_password', with:'Secret55')
+    fill_in('user_password_confirmation', with:'Secret55')
 
-      expect{
-        click_button('Create User')
-      }.to change{User.count}.by(1)
-    end
-
-  describe "user ratings" do
-    let(:user1){FactoryBot.create :user, username: "toinne"}
-
-    it "should not have any ratings" do
-      visit user_path(user)
-      expect(page).to have_content "user has not rated any beers!"
-    end
-
-    it "should have some ratings" do
-      create_beers_with_many_ratings( {user: user}, 10, 15, 9)
-      create_beers_with_many_ratings( {user: user1}, 11, 25, 19)
-      visit user_path(user)
-      @user = user
-      expect(page).to have_content "Has made 3 ratings"
-      @user.ratings.each do |r|
-        expect(page).to have_content "#{r.beer.name} #{r.score}"
-      end
-    end
-  end
-
-  describe "Users ratings are removed database" do
-    it "remove rating" do
-      FactoryBot.create :rating, user: user
-      sign_in(username: "Pekka", password: "Foobar1")
-      visit user_path(user)
-      expect{
-        page.find_link(href: '/ratings/1').click
-      }.to change{Rating.count}.by(-1)
-    end
+    expect{
+      click_button('Create User')
+    }.to change{User.count}.by(1)
   end
 end
