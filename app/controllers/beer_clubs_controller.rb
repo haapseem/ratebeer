@@ -24,8 +24,7 @@ class BeerClubsController < ApplicationController
   end
 
   # GET /beer_clubs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /beer_clubs
   # POST /beer_clubs.json
@@ -60,7 +59,7 @@ class BeerClubsController < ApplicationController
   # DELETE /beer_clubs/1
   # DELETE /beer_clubs/1.json
   def destroy
-    @beer_club.destroy
+    @beer_club.destroy if ensure_that_admin
     respond_to do |format|
       format.html { redirect_to beer_clubs_url, notice: 'Beer club was successfully destroyed.' }
       format.json { head :no_content }

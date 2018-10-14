@@ -1,6 +1,5 @@
 class PlacesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def show
     @place = BeermappingApi.place_in(session[:city], params[:id])

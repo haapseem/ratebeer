@@ -1,13 +1,21 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Beer places search</h1>
 
 <%= form_tag places_path do %>
-  city <%= text_field_tag :city, params[:city] %>
-  <%= submit_tag "Search" %>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">City</span>
+    </div>
+    <%= text_field_tag :city, params[:city], class: 'form-control' %>
+    <div class="input-group-append">
+      <%= submit_tag "Search", class: 'btn btn-warning'%>
+    </div>
+  </div>
 <% end %>
 
 <% if @places %>
+</br>
   <h4>the current beer weather in <%= @places.first.city %></h4>
 
   <p><%= @weather['temp_c'] %> Celsius</p>
@@ -17,7 +25,7 @@
   <p><strong>wind</strong> <%= (@weather['wind_kph'] * 0.277777778).round(1) %> m/sec, direction <%= @weather['wind_dir'] %> </p>
 
   <h4>places to get your beer</h4>
-  <table>
+  <table class="table table-hover">
     <thead>
       <% Place.rendered_fields.each do |field| %>
         <th><%= field %></th>

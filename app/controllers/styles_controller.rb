@@ -9,8 +9,7 @@ class StylesController < ApplicationController
 
   # GET /styles/1
   # GET /styles/1.json
-  def show
-  end
+  def show; end
 
   # GET /styles/new
   def new
@@ -18,8 +17,7 @@ class StylesController < ApplicationController
   end
 
   # GET /styles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /styles
   # POST /styles.json
@@ -54,7 +52,7 @@ class StylesController < ApplicationController
   # DELETE /styles/1
   # DELETE /styles/1.json
   def destroy
-    @style.destroy
+    @style.destroy if ensure_that_admin
     respond_to do |format|
       format.html { redirect_to styles_url, notice: 'Style was successfully destroyed.' }
       format.json { head :no_content }
@@ -62,13 +60,14 @@ class StylesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_style
-      @style = Style.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def style_params
-      params.require(:style).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_style
+    @style = Style.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def style_params
+    params.require(:style).permit(:name, :description)
+  end
 end

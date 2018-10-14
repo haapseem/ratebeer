@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h2>
   <%= @user.username %>
@@ -36,8 +36,4 @@
  <% end %>
 </ul>
 
-<% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <br>
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
- <% end %>
+<%= edit_and_destroy_buttons(@user) %>

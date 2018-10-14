@@ -1,1 +1,1 @@
-json.partial! "styles/style", style: @style
+json.partial! 'styles/style', style: @style

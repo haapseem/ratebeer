@@ -1,22 +1,22 @@
 FactoryBot.define do
   factory :user do
-    username { "Pekka" }
-    password { "Foobar1" }
-    password_confirmation { "Foobar1" }
+    username { 'Pekka' }
+    password { 'Foobar1' }
+    password_confirmation { 'Foobar1' }
   end
 
   factory :brewery do
-    name { "anonymous" }
+    name { 'anonymous' }
     year { 1900 }
   end
 
   factory :style do
-    name { "crap" }
-    description { "generic bulk..." }
+    name { 'crap' }
+    description { 'generic bulk...' }
   end
 
   factory :beer do
-    name { "anonymous" }
+    name { 'anonymous' }
     style
     brewery
   end

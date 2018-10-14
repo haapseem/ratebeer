@@ -1,6 +1,10 @@
 class RatingsController < ApplicationController
   def index
     @ratings = Rating.all
+    @topbeers = Beer.all.sort_by(&:average_rating).reverse.first(3)
+    @topstyles = Style.all.sort_by(&:average_rating).reverse.first(3)
+    @topbreweries = Brewery.all.sort_by(&:average_rating).reverse.first(3)
+    @mostActiveUsers = User.all.sort_by { |u| u.ratings.count }.reverse.first(3)
   end
 
   def new

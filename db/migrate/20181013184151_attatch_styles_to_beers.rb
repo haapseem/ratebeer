@@ -1,6 +1,6 @@
 class AttatchStylesToBeers < ActiveRecord::Migration[5.2]
   def up
-    Beer.all.map{ |b| b['style'] }.uniq.each do |style|
+    Beer.all.map { |b| b['style'] }.uniq.each do |style|
       Style.create name: style
     end
 

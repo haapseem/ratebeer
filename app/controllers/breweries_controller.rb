@@ -1,12 +1,13 @@
 class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_admin, only: [:destroy]
 
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
-    render :index
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
   end
 
   # GET /breweries/1
@@ -14,6 +15,14 @@ class BreweriesController < ApplicationController
   def show
   end
 
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, !brewery.active
+
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to brewery, notice: "brewery activity status changed to #{new_status}"
+  end
   # GET /breweries/new
   def new
     @brewery = Brewery.new
@@ -56,7 +65,7 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
-    @brewery.destroy
+    @brewery.destroy if ensure_that_admin
     respond_to do |format|
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }
       format.json { head :no_content }
@@ -72,6 +81,6 @@ class BreweriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def brewery_params
-    params.require(:brewery).permit(:name, :year)
+    params.require(:brewery).permit(:name, :year, :active)
   end
 end

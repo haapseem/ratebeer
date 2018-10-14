@@ -9,8 +9,7 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/1
   # GET /memberships/1.json
-  def show
-  end
+  def show; end
 
   # GET /memberships/new
   def new
@@ -19,8 +18,7 @@ class MembershipsController < ApplicationController
   end
 
   # GET /memberships/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /memberships
   # POST /memberships.json

@@ -9,6 +9,6 @@ class ApixuApi
     # raise "APIXU_APIKEY env variable not defined" if ENV['APIXU_APIKEY'].nil?
     #
     # ENV['APIXU_APIKEY']
-    "7cd241debf284e03bbb175238181310"
+    '7cd241debf284e03bbb175238181310'
   end
 end

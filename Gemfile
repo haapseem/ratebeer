@@ -5,7 +5,8 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
-
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 gem 'httparty'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -19,12 +20,11 @@ group :production do
    gem 'rails_12factor'
 end
 
-#tests
+# tests
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   # gem 'factory_girl_rails'
 end
-
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -38,7 +38,7 @@ group :test do
   gem 'webmock'
 end
 
-#secure crypt
+# secure crypt
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the app server
