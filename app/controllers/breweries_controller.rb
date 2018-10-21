@@ -6,6 +6,7 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
+    @breweries = Brewery.all
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
   end
@@ -70,6 +71,9 @@ class BreweriesController < ApplicationController
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def list
   end
 
   private

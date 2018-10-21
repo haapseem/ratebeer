@@ -4,6 +4,10 @@
   <%= @user.username %>
 </h2>
 
+<% if current_user_is_admin %>
+ <%= link_to (@user.closed ? 'open account' : 'close account'), toggle_closed_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+<% end %>
+
 <% if @user.ratings.empty? %>
   <p>has not rate any beer</p>
 <% else %>

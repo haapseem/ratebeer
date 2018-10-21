@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
+  helper_method :current_user_is_admin
 
   def current_user
     return nil if session[:user_id].nil?
@@ -13,5 +14,13 @@ class ApplicationController < ActionController::Base
 
   def ensure_that_admin
     User.find(session[:user_id]).admin || false
+  end
+
+  def current_user_is_admin
+    current_user&.admin
+  end
+
+  def current_user_admin
+    redirect_to signin_path, notice: 'operation allowed only for admins' unless current_user_is_admin
   end
 end

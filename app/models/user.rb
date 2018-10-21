@@ -48,4 +48,13 @@ class User < ApplicationRecord
 
     averages.max_by { |r| r[:score] }[:brewery]
   end
+
+  def toggle_closed
+    user = User.find(params[:id])
+    user.update_attribute :closed, !user.closed
+
+    new_status = user.frozen? ? 'closed' : 'opened'
+
+    redirect_to user, notice: "account of #{user.username} #{new_status}"
+  end
 end
