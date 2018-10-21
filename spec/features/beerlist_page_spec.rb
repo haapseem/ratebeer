@@ -50,7 +50,7 @@ describe 'Beerlist page' do
   it "brewery order", js: true do
     visit beerlist_path
     find('#brewery').click
-    # expect(page.find('table').find('tr:nth-child(2)')).to have_content 'Ayinger'
-    # expect(page.find('table').find('tr:nth-child(3)')).to have_content 'Koff'
+    expect(page.find('table').find('tr:nth-child(2)')).to have_content 'Ayinger'
+    expect(page.find('table').find('tr:nth-child(3)')).to have_content 'Koff'
   end
 end
