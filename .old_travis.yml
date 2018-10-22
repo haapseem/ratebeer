@@ -1,0 +1,24 @@
+language: ruby
+# dist: trusty
+# addons:
+#   chrome: stable
+# before_install:
+#   - # start your web application and listen on `localhost`
+#   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+# before_script:
+#   - "export DISPLAY=:99.0"
+#   - "sh -e /etc/init.d/xvfb start"
+#   - sleep 3 # give xvfb some time to start
+rvm:
+- 2.5.1
+script:
+- bundle exec rails db:migrate
+- bundle exec rspec -fd spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: IfFRm0URAtBem4mFDVohhnkMRT5t0cNnQ8rJ989g6wNW70oXqW/Zh3npRWScLaLav0el3r9wQ/vHtQrNvYK9V+M96X/hyZxx2dO2SiJAwrsccNqpJF1C1wpy3EYbI8xlds5eNVOAVJpGG35n2TKaJUzsGMpSvN4Rq7iheQ0EG2FiI1to0lEQJDmj/BujL7lHs+3SAxVK7jn7pX7wTXKcCm9nABfSA1mt9wQbBpBzXUllqENNRKN0hHckxq01Dl3jacYtN5DDDl1ZIY6/4cwSt+kCRW6Fxq8ohwkPyZ5WwVP0sXN2SAj6GPxK7LOh6jqkbLaAy2L12n5Jrnj3BELtrrOKZ5vScBTQnIJoKcdA9/RFDheZkF+gv0oSBN2QuRpLFVqDnUVc0HZVsV/MmtNboQk10VPN37n2UUHI7ZcCa4vrQZdj1gMWAFoV7FIW8mwY02tmwOhDNTwjAAB6TYsSmUh6EVky/gvGoVDzxplVv8gb+k6v6VHEuhlnBjLlgjRqvG/K3P+ySprHcUBfbLhDTxBw9DXdoafgNyHkowoR7ussuute7Iw95F/bIxP8/Yd+5xspIuQE+qZEQU4Jqic7n39G32M83oR8XmZ8Jc8fNe2jf3wpr2NTRo3MI5b83o8Guo+8TxKpJ4I3NULv7oKu7jvpuWcPjwX/jahHFkSeMXc=
+  run: "rake db:migrate"
+  app: rocky-fjord-88573
+  on:
+    repo: haapseem/ratebeer
