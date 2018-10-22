@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.1'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'httparty'
+gem 'webpacker', '~> 3.2'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
